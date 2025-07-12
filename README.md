@@ -1,0 +1,1 @@
+This is a basic frontend-only clone of Spotify, designed to replicate the visual layout and user interface of the popular music streaming service. The project is built using HTML, CSS, and Vanilla JavaScript, focusing purely on UI/UX without any backend functionality.
