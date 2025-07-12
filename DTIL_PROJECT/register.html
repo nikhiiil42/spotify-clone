@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Account | Registration</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f8fa;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* Container Styles */
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        /* Header Styles */
+        .form-header {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .form-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .form-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        /* Form Styles */
+        .form-container {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus, 
+        .form-group select:focus {
+            border-color: #a777e3;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(167, 119, 227, 0.2);
+        }
+        
+        .form-group .input-icon {
+            position: absolute;
+            top: 40px;
+            right: 15px;
+            color: #aaa;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* Password Strength Indicator */
+        .password-strength {
+            display: flex;
+            margin-top: 8px;
+            height: 5px;
+        }
+        
+        .strength-segment {
+            flex: 1;
+            margin-right: 3px;
+            background-color: #eee;
+            border-radius: 5px;
+        }
+        
+        .strength-segment:last-child {
+            margin-right: 0;
+        }
+        
+        .strength-segment.active-1 {
+            background-color: #ff4747;
+        }
+        
+        .strength-segment.active-2 {
+            background-color: #ffa000;
+        }
+        
+        .strength-segment.active-3 {
+            background-color: #2ecc71;
+        }
+        
+        /* Terms and Privacy */
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .form-check input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: #a777e3;
+        }
+        
+        .form-check label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .form-check label a {
+            color: #a777e3;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .form-check label a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Submit Button */
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+        .create{
+            color: white;
+            text-decoration: none;
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #5a7df9, #9566d9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(110, 142, 251, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        
+        
+        /* Form Validation Styles */
+        .form-group input.error {
+            border-color: #ff4747;
+        }
+        
+        .error-message {
+            color: #ff4747;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .form-group input.error + .error-message {
+            display: block;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .form-header h1 {
+                font-size: 24px;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <h1>Create an Account</h1>
+            <p>Join our community today</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="registration-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="first-name" required>
+                        <span class="error-message">Please enter your first name</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="last-name" required>
+                        <span class="error-message">Please enter your last name</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="input-icon">✉️</span>
+                    <span class="error-message">Please enter a valid email address</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+                    <span class="input-icon">📱</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <span class="input-icon">🔒</span>
+                    <div class="password-strength">
+                        <div class="strength-segment active-1"></div>
+                        <div class="strength-segment"></div>
+                        <div class="strength-segment"></div>
+                        <div class="strength-segment"></div>
+                    </div>
+                    <span class="error-message">Password must be at least 8 characters</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                    <span class="input-icon">🔒</span>
+                    <span class="error-message">Passwords do not match</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob">
+                </div>
+                
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" name="country">
+                        <option value="" selected disabled>Select your country</option>
+                        <option value="us">United States</option>
+                        <option value="ca">Canada</option>
+                        <option value="uk">United Kingdom</option>
+                        <option value="au">Australia</option>
+                        <option value="de">Germany</option>
+                        <option value="fr">France</option>
+                        <option value="jp">Japan</option>
+                        <option value="in">India</option>
+                        <option value="br">Brazil</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-check">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                </div>
+                
+                <button type="submit" class="submit-btn"><a class="create" href="welcome.html">Create account</a></button>
+                
+                
+            </form>
+        </div>
+    </div>
+</body>
+</html>
